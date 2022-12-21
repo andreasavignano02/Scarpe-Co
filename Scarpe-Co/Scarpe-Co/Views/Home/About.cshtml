@@ -1,0 +1,31 @@
+﻿@model Scarpe_Co.Models.Articoli
+
+@{
+    ViewBag.Title = "About";
+}
+
+<h2>Dettagli Prodotto</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            @*img*@
+        </div>
+        <div>
+            <h2>@Html.DisplayFor(modelitem => Model.NomeArticolo)</h2>
+        </div>
+        <div>
+            <p>@Html.DisplayFor(modelitem => Model.DescrizioneArticolo)</p>
+        </div>
+    </div>
+    <div>
+        <p>@Html.DisplayFor(modelitem => Model.Costo)</p>
+    </div>
+    <div>
+        @*imggallery1*@
+    </div>
+    <div>
+        @*imggallery2*@
+    </div>
+</div>
+

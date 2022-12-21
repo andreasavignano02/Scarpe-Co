@@ -44,5 +44,47 @@ namespace Scarpe_Co.Controllers
             con.Close();
             return View(articololist);
         }
+
+        [HttpGet]
+        public ActionResult About(int id)
+        {
+            SqlConnection con = new SqlConnection();
+            Articoli articolo = new Articoli();
+            try
+            {
+                
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["ScarpeDab"].ToString();
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                cmd.CommandText = "SELECT * FROM ArticoliTab WHERE IDArticolo = @ID";
+                cmd.Connection = con;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        articolo.IDArticolo = id;
+                        articolo.NomeArticolo = reader["NomeArticolo"].ToString();
+                        articolo.Costo = Convert.ToDouble(reader["Costo"]);
+                        articolo.DescrizioneArticolo = reader["DescrizioneArticolo"].ToString();
+                        articolo.IMGUrl = reader["IMGUrl"].ToString();
+                        articolo.IMGGallery1 = reader["IMGGallery1"].ToString();
+                        articolo.IMGGallery2 = reader["IMGGallery2"].ToString();
+                        articolo.Visibile = Convert.ToBoolean(reader["Visibile"]);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                con.Close();
+            }
+            con.Close();
+            return View(articolo);
+        }
     }
 }
