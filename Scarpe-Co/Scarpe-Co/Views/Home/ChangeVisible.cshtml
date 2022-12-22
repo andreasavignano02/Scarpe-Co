@@ -6,6 +6,13 @@
 
 <h2>ChangeVisible</h2>
 
+@if (ViewBag.ConfermaOffuscamento != null)
+{
+    <div class="alert alert-success">
+    @ViewBag.ConfermaOffuscamento
+    </div>
+}
+
 
 @using (Html.BeginForm())
 {

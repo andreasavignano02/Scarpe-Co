@@ -124,6 +124,7 @@ namespace Scarpe_Co.Controllers
         public ActionResult ChangeVisible(Articoli articolo, int id) 
         {
             SqlConnection con = new SqlConnection();
+            
             try
             {
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["ScarpeDab"].ToString();
@@ -143,7 +144,8 @@ namespace Scarpe_Co.Controllers
                 con.Close();
             }
             con.Close();
-            return RedirectToAction("index");
+            ViewBag.ConfermaOffuscamento = "Offuscamento effettuato";
+            return View();
         }
     }
 }
